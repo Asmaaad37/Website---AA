@@ -1,11 +1,12 @@
 import Link from "next/link";
 import { BalanceBeamMark } from "@/components/balance-beam-mark";
+import { TelegramButton } from "@/components/telegram-button";
 
 const NAV = [
   { href: "/about", label: "About" },
-  { href: "/program", label: "Program" },
-  { href: "/results", label: "Results" },
-  { href: "/resources", label: "Resources" },
+  { href: "/#community", label: "Community" },
+  { href: "/#press", label: "Press" },
+  { href: "/#testimonials", label: "Testimonials" },
 ] as const;
 
 export function SiteHeader() {
@@ -36,12 +37,7 @@ export function SiteHeader() {
           </ul>
         </nav>
 
-        <Link
-          href="/apply"
-          className="rounded-sm bg-phosphor px-4 py-2 text-sm font-medium text-depth transition-opacity hover:opacity-90"
-        >
-          Apply
-        </Link>
+        <TelegramButton size="sm">Join Telegram</TelegramButton>
       </div>
     </header>
   );

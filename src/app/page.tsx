@@ -1,122 +1,309 @@
 import Link from "next/link";
+import { SITE, STATS, PRESS, COMMUNITY_VALUE } from "@/lib/site";
+import { TelegramButton } from "@/components/telegram-button";
+import { MediaImage } from "@/components/media-image";
+import { RiskDisclosure } from "@/components/risk-disclosure";
 
-const SWATCHES = [
-  { name: "depth", hex: "#0E141C", role: "base" },
-  { name: "graphite", hex: "#242C38", role: "surface" },
-  { name: "ledger", hex: "#E8E6E0", role: "paper" },
-  { name: "phosphor", hex: "#E9A23B", role: "signal" },
-  { name: "drawdown", hex: "#A8443B", role: "risk" },
-  { name: "mist", hex: "#8A94A3", role: "muted" },
-] as const;
+const LIFESTYLE = ["anas-2", "anas-3", "anas-4", "anas-5"] as const;
+const TESTIMONIALS = [1, 2, 3, 4, 5, 6] as const;
 
 export default function Home() {
   return (
-    <div className="mx-auto w-full max-w-6xl px-5 sm:px-8">
-      {/* Foundation badge — honest signal that content is not yet real */}
-      <div className="tick-rule mt-10 inline-flex items-center gap-2 border px-3 py-1.5">
-        <span className="h-1.5 w-1.5 rounded-full bg-phosphor" aria-hidden />
-        <span className="tabular text-xs uppercase tracking-widest text-mist">
-          Phase 1 · Foundation
-        </span>
-      </div>
+    <>
+      {/* ============================ HERO ============================ */}
+      <section className="relative overflow-hidden">
+        <div className="mx-auto grid w-full max-w-6xl gap-10 px-5 py-16 sm:px-8 md:grid-cols-[1.15fr_0.85fr] md:items-center md:py-24">
+          <div>
+            <p className="tabular text-xs uppercase tracking-widest text-phosphor">
+              {SITE.role} · Wealth University
+            </p>
+            <h1 className="font-display mt-4 text-4xl leading-[1.03] tracking-tight text-foreground sm:text-6xl">
+              Join my exclusive trading community.
+            </h1>
+            <p className="mt-6 max-w-xl text-lg leading-relaxed text-mist">
+              Free daily market breakdowns, 24/7 community support, and direct
+              mentorship from me — Anas Ali. Learn the strategies. Build the
+              mindset. Start today, completely free.
+            </p>
 
-      {/* Hero placeholder — positioning line, not a fabricated claim */}
-      <section className="grid gap-8 py-16 md:grid-cols-[1.5fr_1fr] md:items-end md:py-24">
-        <div>
-          <h1 className="font-display text-4xl leading-[1.05] tracking-tight text-foreground sm:text-6xl">
-            Learn to trade like it&rsquo;s a{" "}
-            <span className="text-phosphor">profession</span>, not a lottery.
-          </h1>
-          <p className="mt-6 max-w-xl text-lg leading-relaxed text-mist">
-            A risk-first mentorship led by Anas Ali. Built on records and
-            evidence — honest about what trading really involves.
-          </p>
-
-          <div className="mt-9 flex flex-wrap items-center gap-4">
-            <Link
-              href="/apply"
-              className="rounded-sm bg-phosphor px-6 py-3 font-medium text-depth transition-opacity hover:opacity-90"
-            >
-              Apply for the next cohort
-            </Link>
-            <Link
-              href="/program"
-              className="group inline-flex items-center gap-2 text-foreground"
-            >
-              See how it works
-              <span
-                aria-hidden
-                className="transition-transform group-hover:translate-x-1"
+            <div className="mt-9 flex flex-wrap items-center gap-4">
+              <TelegramButton size="lg">Join {SITE.telegramHandle}</TelegramButton>
+              <Link
+                href="/#community"
+                className="group inline-flex items-center gap-2 text-foreground"
               >
-                &rarr;
-              </span>
-            </Link>
+                What you get
+                <span
+                  aria-hidden
+                  className="transition-transform group-hover:translate-x-1"
+                >
+                  &darr;
+                </span>
+              </Link>
+            </div>
+
+            {/* Self-reported community figures (his own published numbers) */}
+            <dl className="mt-12 grid max-w-lg grid-cols-3 gap-6">
+              {STATS.map((s) => (
+                <div key={s.label} className="tick-rule border-l pl-4">
+                  <dt className="font-display text-2xl text-foreground sm:text-3xl">
+                    {s.value}
+                  </dt>
+                  <dd className="mt-1 text-xs leading-snug text-mist">
+                    {s.label}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+
+          {/* Lifestyle hero portrait (LCP). Phase 4: pre-rendered video
+              overlay once encoded to budget (raw mp4 is 7.9MB). */}
+          <div className="relative">
+            <MediaImage
+              src="/media/anas-1.jpg"
+              alt="Anas Ali, founder of Wealth University"
+              ratio="portrait"
+              priority
+              sizes="(max-width: 768px) 100vw, 40vw"
+            />
+            <span
+              className="pointer-events-none absolute -bottom-3 -left-3 -z-10 h-24 w-24 rounded-sm bg-phosphor/20 blur-2xl"
+              aria-hidden
+            />
           </div>
         </div>
 
-        {/* Credibility marker — honest positioning (leads with risk) */}
-        <aside className="tick-rule border-l pl-5">
-          <p className="tabular text-xs uppercase tracking-widest text-risk-ink">
-            We start here
+        {/* Official channel verification bar */}
+        <div className="tick-rule border-y bg-surface/30">
+          <p className="mx-auto w-full max-w-6xl px-5 py-3 text-center text-xs text-mist sm:px-8">
+            Official community only:{" "}
+            <a
+              href={SITE.telegram}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="tabular text-foreground underline underline-offset-2"
+            >
+              t.me/anasalitrader
+            </a>{" "}
+            — beware of fake channels. In Pakistan, a VPN may be required to
+            reach Telegram.
           </p>
-          <p className="mt-2 text-sm leading-relaxed text-mist">
-            Most retail traders lose money. Any program that opens with returns
-            instead of risk is selling you something. This one opens with risk.
-          </p>
-        </aside>
+        </div>
       </section>
 
-      {/* Design-system proof strip (Phase 1 verification, not final UI) */}
-      <section
-        aria-label="Design system tokens"
-        className="tick-rule border-t py-12"
-      >
-        <p className="tabular mb-6 text-xs uppercase tracking-widest text-mist">
-          Ledger &amp; Terminal — tokens
-        </p>
-        <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-6">
-          {SWATCHES.map((s) => (
-            <li key={s.name} className="tick-rule border p-3">
-              <span
-                className="block h-12 w-full rounded-sm"
-                style={{ backgroundColor: s.hex }}
-                aria-hidden
+      {/* ====================== WHAT YOU GET (FREE) ====================== */}
+      <section id="community" className="scroll-mt-20">
+        <div className="mx-auto w-full max-w-6xl px-5 py-20 sm:px-8">
+          <p className="tabular text-xs uppercase tracking-widest text-phosphor">
+            100% free
+          </p>
+          <h2 className="font-display mt-3 max-w-2xl text-3xl leading-tight tracking-tight sm:text-4xl">
+            What you get when you join
+          </h2>
+          <p className="mt-4 max-w-2xl text-mist">
+            Everything you need to start your trading{" "}
+            <span className="text-foreground">education</span> journey — no fees,
+            no catch.
+          </p>
+
+          <ul className="mt-12 grid gap-px overflow-hidden rounded-sm sm:grid-cols-2">
+            {COMMUNITY_VALUE.map((item, i) => (
+              <li
+                key={item.title}
+                className="tick-rule border bg-surface/30 p-7"
+              >
+                <span className="tabular text-xs text-mist">0{i + 1}</span>
+                <h3 className="font-display mt-3 text-xl text-foreground">
+                  {item.title}
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-mist">
+                  {item.body}
+                </p>
+              </li>
+            ))}
+          </ul>
+
+          {/* Compliance: education framing made explicit here. */}
+          <div className="mt-6 max-w-2xl">
+            <RiskDisclosure variant="inline" />
+          </div>
+        </div>
+      </section>
+
+      {/* ========================= LIFESTYLE ========================= */}
+      <section id="lifestyle" className="tick-rule border-t bg-depth">
+        <div className="mx-auto w-full max-w-6xl px-5 py-20 sm:px-8">
+          <p className="tabular text-xs uppercase tracking-widest text-phosphor">
+            The vision
+          </p>
+          <h2 className="font-display mt-3 max-w-2xl text-3xl leading-tight tracking-tight sm:text-4xl">
+            I am waiting for you at the top.
+          </h2>
+          <p className="mt-4 max-w-2xl text-mist">
+            A look behind the work, the community, and the life it can build.
+            Join in and learn the strategies for yourself.
+          </p>
+
+          <div className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-4">
+            {LIFESTYLE.map((name, i) => (
+              <MediaImage
+                key={name}
+                src={`/media/${name}.jpg`}
+                alt={`Anas Ali — ${i + 1}`}
+                ratio={i % 2 === 0 ? "portrait" : "square"}
+                sizes="(max-width: 640px) 50vw, 25vw"
               />
-              <p className="mt-2 text-sm text-foreground">{s.name}</p>
-              <p className="tabular text-xs text-mist">{s.hex}</p>
-              <p className="tabular text-[0.65rem] uppercase tracking-wider text-mist">
-                {s.role}
-              </p>
-            </li>
-          ))}
-        </ul>
+            ))}
+          </div>
 
-        {/* Type roles proof */}
-        <dl className="mt-10 grid gap-6 sm:grid-cols-3">
-          <div>
-            <dt className="tabular text-xs uppercase tracking-widest text-mist">
-              Display · Fraunces
-            </dt>
-            <dd className="font-display mt-2 text-3xl">Records, not hype</dd>
+          <div className="mt-10">
+            <TelegramButton>Start your journey</TelegramButton>
           </div>
-          <div>
-            <dt className="tabular text-xs uppercase tracking-widest text-mist">
-              Body · Hanken Grotesk
-            </dt>
-            <dd className="mt-2 text-base leading-relaxed text-mist">
-              The body face carries the argument at 16px on a mid-range Android.
-            </dd>
-          </div>
-          <div>
-            <dt className="tabular text-xs uppercase tracking-widest text-mist">
-              Data · IBM Plex Mono
-            </dt>
-            <dd className="tabular mt-2 text-2xl text-foreground">
-              1,240.50 &middot; 2.0% &middot; 1:3R
-            </dd>
-          </div>
-        </dl>
+        </div>
       </section>
-    </div>
+
+      {/* =========================== PRESS =========================== */}
+      <section id="press" className="scroll-mt-20 tick-rule border-t">
+        <div className="mx-auto w-full max-w-6xl px-5 py-20 sm:px-8">
+          <p className="tabular text-xs uppercase tracking-widest text-phosphor">
+            Featured in the press
+          </p>
+          <h2 className="font-display mt-3 max-w-3xl text-3xl leading-tight tracking-tight sm:text-4xl">
+            Recognised for making education more accessible
+          </h2>
+          <p className="mt-4 max-w-2xl text-mist">
+            Coverage of Anas Ali&rsquo;s work building Wealth University — a free
+            platform helping learners develop practical skills over
+            certificates.
+          </p>
+
+          {/* Attributable coverage — links to the real articles */}
+          <ul className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {PRESS.filter((p) => p.url).map((p) => (
+              <li key={p.name}>
+                <a
+                  href={p.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="tick-rule group flex h-full flex-col justify-between gap-4 border bg-surface/30 p-6 transition-colors hover:border-phosphor/50"
+                >
+                  <p className="text-sm leading-snug text-foreground">
+                    &ldquo;{p.headline}&rdquo;
+                  </p>
+                  <span className="tabular flex items-center gap-2 text-xs uppercase tracking-widest text-mist">
+                    {p.name}
+                    <span
+                      aria-hidden
+                      className="text-phosphor transition-transform group-hover:translate-x-0.5"
+                    >
+                      &nearr;
+                    </span>
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
+
+          {/* Outlets listed without an article link yet */}
+          {PRESS.some((p) => !p.url) && (
+            <div className="mt-6">
+              <p className="tabular text-xs uppercase tracking-widest text-mist">
+                Also featured in
+              </p>
+              <ul className="mt-3 flex flex-wrap gap-x-6 gap-y-2 text-sm text-mist">
+                {PRESS.filter((p) => !p.url).map((p) => (
+                  <li key={p.name}>{p.name}</li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* ======================= TESTIMONIALS ======================= */}
+      <section
+        id="testimonials"
+        className="scroll-mt-20 tick-rule border-t bg-depth"
+      >
+        <div className="mx-auto w-full max-w-6xl px-5 py-20 sm:px-8">
+          <p className="tabular text-xs uppercase tracking-widest text-phosphor">
+            Student experiences
+          </p>
+          <h2 className="font-display mt-3 max-w-2xl text-3xl leading-tight tracking-tight sm:text-4xl">
+            Real students, real experiences
+          </h2>
+          <p className="mt-4 max-w-2xl text-mist">
+            What members say about learning inside the community.
+          </p>
+
+          <div className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-3">
+            {TESTIMONIALS.map((n) => (
+              <MediaImage
+                key={n}
+                src={`/media/testimonial-${n}.jpeg`}
+                alt={`Student testimonial ${n}`}
+                ratio="tall"
+                fit="contain"
+                sizes="(max-width: 640px) 50vw, 33vw"
+              />
+            ))}
+          </div>
+
+          {/* §8.2 ResultsDisclaimer — adjacent to outcome/testimonial claims */}
+          <p className="mt-6 max-w-2xl text-xs leading-relaxed text-mist">
+            Individual experiences vary and are not typical. Past performance
+            does not indicate future results. Testimonials are shared with
+            permission and reflect individual views, not a promise of any
+            outcome.
+          </p>
+        </div>
+      </section>
+
+      {/* ========================= FINAL CTA ========================= */}
+      <section className="tick-rule border-t">
+        <div className="mx-auto w-full max-w-6xl px-5 py-24 text-center sm:px-8">
+          <h2 className="font-display mx-auto max-w-3xl text-4xl leading-[1.05] tracking-tight sm:text-5xl">
+            Ready to start your trading journey?
+          </h2>
+          <p className="mx-auto mt-5 max-w-xl text-lg text-mist">
+            Join the exclusive Telegram community and get instant access to the
+            breakdowns, mentorship, and support you need to learn and grow.
+          </p>
+
+          <ul className="mx-auto mt-8 flex max-w-md flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-mist">
+            <li className="flex items-center gap-2">
+              <span className="text-phosphor" aria-hidden>
+                ✓
+              </span>{" "}
+              100% free access
+            </li>
+            <li className="flex items-center gap-2">
+              <span className="text-phosphor" aria-hidden>
+                ✓
+              </span>{" "}
+              Instant setup
+            </li>
+            <li className="flex items-center gap-2">
+              <span className="text-phosphor" aria-hidden>
+                ✓
+              </span>{" "}
+              No hidden fees
+            </li>
+          </ul>
+
+          <div className="mt-9 flex justify-center">
+            <TelegramButton size="lg">Join the community now</TelegramButton>
+          </div>
+
+          <p className="mx-auto mt-6 max-w-xl text-xs leading-relaxed text-mist">
+            <span className="text-risk-ink">Security warning:</span> beware of
+            fake groups and impersonators. Confirm the link is exactly{" "}
+            <span className="tabular text-foreground">t.me/anasalitrader</span>.
+            Pakistan users may need a VPN to access Telegram.
+          </p>
+        </div>
+      </section>
+    </>
   );
 }
