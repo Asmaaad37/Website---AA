@@ -1,0 +1,97 @@
+@import "tailwindcss";
+
+/* =============================================================
+   "Ledger & Terminal" — design tokens (Phase 0, locked)
+   Tailwind 4 CSS-first config. These @theme vars generate
+   utilities (bg-depth, text-phosphor, font-display, ...).
+   ============================================================= */
+@theme {
+  /* Palette ---------------------------------------------------- */
+  --color-depth: #0e141c; /* base dark — terminal at rest */
+  --color-graphite: #242c38; /* elevated surfaces / cards */
+  --color-ledger: #e8e6e0; /* paper light base */
+  --color-phosphor: #e9a23b; /* rationed amber signal */
+  --color-drawdown: #a8443b; /* muted oxblood — RISK/LOSS fills/borders */
+  --color-mist: #8a94a3; /* secondary text / tick-rules */
+
+  /* Lightened oxblood for small RISK TEXT on the dark base — keeps the
+     hue but clears WCAG AA (drawdown itself is too dark as text). */
+  --color-risk-ink: color-mix(in srgb, var(--color-drawdown) 50%, var(--color-ledger));
+
+  /* Semantic aliases ------------------------------------------ */
+  --color-background: var(--color-depth);
+  --color-foreground: var(--color-ledger);
+  --color-surface: var(--color-graphite);
+  --color-rule: color-mix(in srgb, var(--color-mist) 22%, transparent);
+
+  /* Type — three roles ---------------------------------------- */
+  --font-display: var(--font-fraunces); /* restrained high-contrast serif */
+  --font-body: var(--font-hanken); /* humanist grotesque */
+  --font-mono: var(--font-plex-mono); /* tabular data / terminal */
+  --font-sans: var(--font-hanken); /* default sans -> body */
+}
+
+/* Committed dark identity — NOT prefers-color-scheme driven.
+   Paper (ledger) is a section treatment, not an OS theme. */
+:root {
+  color-scheme: dark;
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Every number on the site is tabular-lining, never body font. */
+  .tabular {
+    font-family: var(--font-mono), ui-monospace, monospace;
+    font-variant-numeric: tabular-nums lining-nums;
+    font-feature-settings: "tnum" 1, "lnum" 1;
+  }
+
+  ::selection {
+    background-color: var(--color-phosphor);
+    color: var(--color-depth);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-phosphor);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+}
+
+/* Display face: high optical contrast, softness/wonk off, so
+   Fraunces reads engraved/institutional — not editorial Playfair.
+   Unlayered so it wins over the utility's font-family without
+   conflicting (different property). */
+.font-display {
+  font-variation-settings: "opsz" 144, "SOFT" 0, "WONK" 0;
+  letter-spacing: -0.01em;
+}
+
+/* Order-book / ruler tick-rule — the recurring structural motif. */
+.tick-rule {
+  border-color: var(--color-rule);
+}
+
+/* Accessibility: kill motion entirely when requested (incl. Lenis
+   later — that gets disabled in JS, this is the CSS backstop). */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
