@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { PRESS } from "@/lib/site";
 import { MediaImage } from "@/components/media-image";
 import { TelegramButton } from "@/components/telegram-button";
+import { Reveal } from "@/components/motion/reveal";
+import { SplitHeadline } from "@/components/motion/split-headline";
 
 export const metadata: Metadata = {
   title: "About Anas Ali",
@@ -25,44 +27,47 @@ export default function AboutPage() {
           <p className="tabular text-xs uppercase tracking-widest text-phosphor">
             The mentor
           </p>
-          <h1 className="font-display mt-3 text-4xl leading-[1.05] tracking-tight sm:text-5xl">
-            Muhammad Anas Ali
-          </h1>
-          <p className="mt-6 text-lg leading-relaxed text-mist">
-            A 24-year-old Pakistani entrepreneur and the founder of{" "}
-            <span className="text-foreground">Wealth University</span> — a free
-            online platform teaching practical, real-world skills: financial
-            literacy, trading, e-commerce, digital marketing, and online
-            business.
-          </p>
-          <p className="mt-4 leading-relaxed text-mist">
-            His philosophy is simple and, as the press has put it,{" "}
-            <span className="text-foreground">
-              &ldquo;skills over certificates&rdquo;
-            </span>
-            : practical ability matters more than paper qualifications. He built
-            the platform around access, mentorship, and peer learning rather
-            than a certificate-first system.
-          </p>
+          <SplitHeadline
+            text="Muhammad Anas Ali"
+            className="font-display mt-3 text-4xl leading-[1.05] tracking-tight sm:text-5xl"
+          />
+          <Reveal mode="load" delay={0.3}>
+            <p className="mt-6 text-lg leading-relaxed text-mist">
+              A 24-year-old Pakistani entrepreneur and the founder of{" "}
+              <span className="text-foreground">Wealth University</span> — a free
+              online platform teaching practical, real-world skills: financial
+              literacy, trading, e-commerce, digital marketing, and online
+              business.
+            </p>
+            <p className="mt-4 leading-relaxed text-mist">
+              His philosophy is simple and, as the press has put it,{" "}
+              <span className="text-foreground">
+                &ldquo;skills over certificates&rdquo;
+              </span>
+              : practical ability matters more than paper qualifications. He
+              built the platform around access, mentorship, and peer learning
+              rather than a certificate-first system.
+            </p>
+          </Reveal>
         </div>
       </div>
 
       {/* Press-cited figures — attributed, not self-declared */}
-      <dl className="mt-16 grid gap-6 sm:grid-cols-3">
+      <Reveal className="mt-16 grid gap-6 sm:grid-cols-3">
         {[
           { v: "200,000+", l: "learners on Wealth University (per press coverage)" },
           { v: "160K+", l: "members in the Telegram community (self-reported)" },
           { v: "5 skill tracks", l: "finance, trading, e-commerce, marketing, business" },
         ].map((s) => (
           <div key={s.l} className="tick-rule border-t pt-4">
-            <dt className="font-display text-3xl text-foreground">{s.v}</dt>
-            <dd className="mt-2 text-sm leading-snug text-mist">{s.l}</dd>
+            <p className="font-display text-3xl text-foreground">{s.v}</p>
+            <p className="mt-2 text-sm leading-snug text-mist">{s.l}</p>
           </div>
         ))}
-      </dl>
+      </Reveal>
 
       {/* Method / positioning — kept honest and education-framed */}
-      <div className="mt-16 grid gap-8 md:grid-cols-2">
+      <Reveal className="mt-16 grid gap-8 md:grid-cols-2">
         <div>
           <h2 className="font-display text-2xl">The approach to trading</h2>
           <p className="mt-3 leading-relaxed text-mist">
@@ -79,10 +84,10 @@ export default function AboutPage() {
             outlets from Khaleej Times to SAMAA TV have covered the mission.
           </p>
         </div>
-      </div>
+      </Reveal>
 
       {/* Attributed press */}
-      <div className="mt-16">
+      <Reveal className="mt-16">
         <p className="tabular text-xs uppercase tracking-widest text-mist">
           As featured in
         </p>
@@ -104,7 +109,7 @@ export default function AboutPage() {
             </li>
           ))}
         </ul>
-      </div>
+      </Reveal>
 
       <div className="mt-14">
         <TelegramButton size="lg">Join the community</TelegramButton>

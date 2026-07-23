@@ -3,6 +3,7 @@ import { Fraunces, Hanken_Grotesk, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { SmoothScroll } from "@/components/motion/smooth-scroll";
 
 /* Display — restrained high-contrast institutional serif.
    Load the opsz/SOFT/WONK axes so globals.css can pin the
@@ -55,11 +56,13 @@ export default function RootLayout({
         >
           Skip to content
         </a>
-        <SiteHeader />
-        <main id="main-content" className="flex-1">
-          {children}
-        </main>
-        <SiteFooter />
+        <SmoothScroll>
+          <SiteHeader />
+          <main id="main-content" className="flex-1">
+            {children}
+          </main>
+          <SiteFooter />
+        </SmoothScroll>
       </body>
     </html>
   );

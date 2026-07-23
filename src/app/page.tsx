@@ -3,6 +3,8 @@ import { SITE, STATS, PRESS, COMMUNITY_VALUE } from "@/lib/site";
 import { TelegramButton } from "@/components/telegram-button";
 import { MediaImage } from "@/components/media-image";
 import { RiskDisclosure } from "@/components/risk-disclosure";
+import { Reveal } from "@/components/motion/reveal";
+import { SplitHeadline } from "@/components/motion/split-headline";
 
 const LIFESTYLE = ["anas-2", "anas-3", "anas-4", "anas-5"] as const;
 const TESTIMONIALS = [1, 2, 3, 4, 5, 6] as const;
@@ -17,44 +19,51 @@ export default function Home() {
             <p className="tabular text-xs uppercase tracking-widest text-phosphor">
               {SITE.role} · Wealth University
             </p>
-            <h1 className="font-display mt-4 text-4xl leading-[1.03] tracking-tight text-foreground sm:text-6xl">
-              Join my exclusive trading community.
-            </h1>
-            <p className="mt-6 max-w-xl text-lg leading-relaxed text-mist">
-              Free daily market breakdowns, 24/7 community support, and direct
-              mentorship from me — Anas Ali. Learn the strategies. Build the
-              mindset. Start today, completely free.
-            </p>
 
-            <div className="mt-9 flex flex-wrap items-center gap-4">
-              <TelegramButton size="lg">Join {SITE.telegramHandle}</TelegramButton>
-              <Link
-                href="/#community"
-                className="group inline-flex items-center gap-2 text-foreground"
-              >
-                What you get
-                <span
-                  aria-hidden
-                  className="transition-transform group-hover:translate-x-1"
+            <SplitHeadline
+              text="Join my exclusive trading community."
+              className="font-display mt-4 text-4xl leading-[1.03] tracking-tight text-foreground sm:text-6xl"
+            />
+
+            <Reveal mode="load" delay={0.35}>
+              <p className="mt-6 max-w-xl text-lg leading-relaxed text-mist">
+                Free daily market breakdowns, 24/7 community support, and direct
+                mentorship from me — Anas Ali. Learn the strategies. Build the
+                mindset. Start today, completely free.
+              </p>
+
+              <div className="mt-9 flex flex-wrap items-center gap-4">
+                <TelegramButton size="lg">
+                  Join {SITE.telegramHandle}
+                </TelegramButton>
+                <Link
+                  href="/#community"
+                  className="group inline-flex items-center gap-2 text-foreground"
                 >
-                  &darr;
-                </span>
-              </Link>
-            </div>
+                  What you get
+                  <span
+                    aria-hidden
+                    className="transition-transform group-hover:translate-x-1"
+                  >
+                    &darr;
+                  </span>
+                </Link>
+              </div>
 
-            {/* Self-reported community figures (his own published numbers) */}
-            <dl className="mt-12 grid max-w-lg grid-cols-3 gap-6">
-              {STATS.map((s) => (
-                <div key={s.label} className="tick-rule border-l pl-4">
-                  <dt className="font-display text-2xl text-foreground sm:text-3xl">
-                    {s.value}
-                  </dt>
-                  <dd className="mt-1 text-xs leading-snug text-mist">
-                    {s.label}
-                  </dd>
-                </div>
-              ))}
-            </dl>
+              {/* Self-reported community figures (his own published numbers) */}
+              <dl className="mt-12 grid max-w-lg grid-cols-3 gap-6">
+                {STATS.map((s) => (
+                  <div key={s.label} className="tick-rule border-l pl-4">
+                    <dt className="font-display text-2xl text-foreground sm:text-3xl">
+                      {s.value}
+                    </dt>
+                    <dd className="mt-1 text-xs leading-snug text-mist">
+                      {s.label}
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+            </Reveal>
           </div>
 
           {/* Lifestyle hero portrait (LCP). Phase 4: pre-rendered video
@@ -95,21 +104,23 @@ export default function Home() {
       {/* ====================== WHAT YOU GET (FREE) ====================== */}
       <section id="community" className="scroll-mt-20">
         <div className="mx-auto w-full max-w-6xl px-5 py-20 sm:px-8">
-          <p className="tabular text-xs uppercase tracking-widest text-phosphor">
-            100% free
-          </p>
-          <h2 className="font-display mt-3 max-w-2xl text-3xl leading-tight tracking-tight sm:text-4xl">
-            What you get when you join
-          </h2>
-          <p className="mt-4 max-w-2xl text-mist">
-            Everything you need to start your trading{" "}
-            <span className="text-foreground">education</span> journey — no fees,
-            no catch.
-          </p>
+          <Reveal>
+            <p className="tabular text-xs uppercase tracking-widest text-phosphor">
+              100% free
+            </p>
+            <h2 className="font-display mt-3 max-w-2xl text-3xl leading-tight tracking-tight sm:text-4xl">
+              What you get when you join
+            </h2>
+            <p className="mt-4 max-w-2xl text-mist">
+              Everything you need to start your trading{" "}
+              <span className="text-foreground">education</span> journey — no
+              fees, no catch.
+            </p>
+          </Reveal>
 
-          <ul className="mt-12 grid gap-px overflow-hidden rounded-sm sm:grid-cols-2">
+          <Reveal className="mt-12 grid gap-px overflow-hidden rounded-sm sm:grid-cols-2">
             {COMMUNITY_VALUE.map((item, i) => (
-              <li
+              <div
                 key={item.title}
                 className="tick-rule border bg-surface/30 p-7"
               >
@@ -120,9 +131,9 @@ export default function Home() {
                 <p className="mt-2 text-sm leading-relaxed text-mist">
                   {item.body}
                 </p>
-              </li>
+              </div>
             ))}
-          </ul>
+          </Reveal>
 
           {/* Compliance: education framing made explicit here. */}
           <div className="mt-6 max-w-2xl">
@@ -134,18 +145,20 @@ export default function Home() {
       {/* ========================= LIFESTYLE ========================= */}
       <section id="lifestyle" className="tick-rule border-t bg-depth">
         <div className="mx-auto w-full max-w-6xl px-5 py-20 sm:px-8">
-          <p className="tabular text-xs uppercase tracking-widest text-phosphor">
-            The vision
-          </p>
-          <h2 className="font-display mt-3 max-w-2xl text-3xl leading-tight tracking-tight sm:text-4xl">
-            I am waiting for you at the top.
-          </h2>
-          <p className="mt-4 max-w-2xl text-mist">
-            A look behind the work, the community, and the life it can build.
-            Join in and learn the strategies for yourself.
-          </p>
+          <Reveal>
+            <p className="tabular text-xs uppercase tracking-widest text-phosphor">
+              The vision
+            </p>
+            <h2 className="font-display mt-3 max-w-2xl text-3xl leading-tight tracking-tight sm:text-4xl">
+              I am waiting for you at the top.
+            </h2>
+            <p className="mt-4 max-w-2xl text-mist">
+              A look behind the work, the community, and the life it can build.
+              Join in and learn the strategies for yourself.
+            </p>
+          </Reveal>
 
-          <div className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-4">
+          <Reveal className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-4">
             {LIFESTYLE.map((name, i) => (
               <MediaImage
                 key={name}
@@ -155,7 +168,7 @@ export default function Home() {
                 sizes="(max-width: 640px) 50vw, 25vw"
               />
             ))}
-          </div>
+          </Reveal>
 
           <div className="mt-10">
             <TelegramButton>Start your journey</TelegramButton>
@@ -166,44 +179,45 @@ export default function Home() {
       {/* =========================== PRESS =========================== */}
       <section id="press" className="scroll-mt-20 tick-rule border-t">
         <div className="mx-auto w-full max-w-6xl px-5 py-20 sm:px-8">
-          <p className="tabular text-xs uppercase tracking-widest text-phosphor">
-            Featured in the press
-          </p>
-          <h2 className="font-display mt-3 max-w-3xl text-3xl leading-tight tracking-tight sm:text-4xl">
-            Recognised for making education more accessible
-          </h2>
-          <p className="mt-4 max-w-2xl text-mist">
-            Coverage of Anas Ali&rsquo;s work building Wealth University — a free
-            platform helping learners develop practical skills over
-            certificates.
-          </p>
+          <Reveal>
+            <p className="tabular text-xs uppercase tracking-widest text-phosphor">
+              Featured in the press
+            </p>
+            <h2 className="font-display mt-3 max-w-3xl text-3xl leading-tight tracking-tight sm:text-4xl">
+              Recognised for making education more accessible
+            </h2>
+            <p className="mt-4 max-w-2xl text-mist">
+              Coverage of Anas Ali&rsquo;s work building Wealth University — a
+              free platform helping learners develop practical skills over
+              certificates.
+            </p>
+          </Reveal>
 
           {/* Attributable coverage — links to the real articles */}
-          <ul className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          <Reveal className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {PRESS.filter((p) => p.url).map((p) => (
-              <li key={p.name}>
-                <a
-                  href={p.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="tick-rule group flex h-full flex-col justify-between gap-4 border bg-surface/30 p-6 transition-colors hover:border-phosphor/50"
-                >
-                  <p className="text-sm leading-snug text-foreground">
-                    &ldquo;{p.headline}&rdquo;
-                  </p>
-                  <span className="tabular flex items-center gap-2 text-xs uppercase tracking-widest text-mist">
-                    {p.name}
-                    <span
-                      aria-hidden
-                      className="text-phosphor transition-transform group-hover:translate-x-0.5"
-                    >
-                      &nearr;
-                    </span>
+              <a
+                key={p.name}
+                href={p.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="tick-rule group flex h-full flex-col justify-between gap-4 border bg-surface/30 p-6 transition-colors hover:border-phosphor/50"
+              >
+                <p className="text-sm leading-snug text-foreground">
+                  &ldquo;{p.headline}&rdquo;
+                </p>
+                <span className="tabular flex items-center gap-2 text-xs uppercase tracking-widest text-mist">
+                  {p.name}
+                  <span
+                    aria-hidden
+                    className="text-phosphor transition-transform group-hover:translate-x-0.5"
+                  >
+                    &nearr;
                   </span>
-                </a>
-              </li>
+                </span>
+              </a>
             ))}
-          </ul>
+          </Reveal>
 
           {/* Outlets listed without an article link yet */}
           {PRESS.some((p) => !p.url) && (
@@ -227,17 +241,19 @@ export default function Home() {
         className="scroll-mt-20 tick-rule border-t bg-depth"
       >
         <div className="mx-auto w-full max-w-6xl px-5 py-20 sm:px-8">
-          <p className="tabular text-xs uppercase tracking-widest text-phosphor">
-            Student experiences
-          </p>
-          <h2 className="font-display mt-3 max-w-2xl text-3xl leading-tight tracking-tight sm:text-4xl">
-            Real students, real experiences
-          </h2>
-          <p className="mt-4 max-w-2xl text-mist">
-            What members say about learning inside the community.
-          </p>
+          <Reveal>
+            <p className="tabular text-xs uppercase tracking-widest text-phosphor">
+              Student experiences
+            </p>
+            <h2 className="font-display mt-3 max-w-2xl text-3xl leading-tight tracking-tight sm:text-4xl">
+              Real students, real experiences
+            </h2>
+            <p className="mt-4 max-w-2xl text-mist">
+              What members say about learning inside the community.
+            </p>
+          </Reveal>
 
-          <div className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-3">
+          <Reveal className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-3">
             {TESTIMONIALS.map((n) => (
               <MediaImage
                 key={n}
@@ -248,7 +264,7 @@ export default function Home() {
                 sizes="(max-width: 640px) 50vw, 33vw"
               />
             ))}
-          </div>
+          </Reveal>
 
           {/* §8.2 ResultsDisclaimer — adjacent to outcome/testimonial claims */}
           <p className="mt-6 max-w-2xl text-xs leading-relaxed text-mist">
@@ -262,7 +278,7 @@ export default function Home() {
 
       {/* ========================= FINAL CTA ========================= */}
       <section className="tick-rule border-t">
-        <div className="mx-auto w-full max-w-6xl px-5 py-24 text-center sm:px-8">
+        <Reveal className="mx-auto w-full max-w-6xl px-5 py-24 text-center sm:px-8">
           <h2 className="font-display mx-auto max-w-3xl text-4xl leading-[1.05] tracking-tight sm:text-5xl">
             Ready to start your trading journey?
           </h2>
@@ -302,7 +318,7 @@ export default function Home() {
             <span className="tabular text-foreground">t.me/anasalitrader</span>.
             Pakistan users may need a VPN to access Telegram.
           </p>
-        </div>
+        </Reveal>
       </section>
     </>
   );
