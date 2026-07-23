@@ -2,6 +2,7 @@ import Link from "next/link";
 import { SITE, STATS, PRESS, COMMUNITY_VALUE } from "@/lib/site";
 import { TelegramButton } from "@/components/telegram-button";
 import { MediaImage } from "@/components/media-image";
+import { HeroVideo } from "@/components/hero-video";
 import { RiskDisclosure } from "@/components/risk-disclosure";
 import { Reveal } from "@/components/motion/reveal";
 import { SplitHeadline } from "@/components/motion/split-headline";
@@ -66,15 +67,14 @@ export default function Home() {
             </Reveal>
           </div>
 
-          {/* Lifestyle hero portrait (LCP). Phase 4: pre-rendered video
-              overlay once encoded to budget (raw mp4 is 7.9MB). */}
+          {/* Hero visual: poster is the LCP, encoded loop fades in over it.
+              Reduced-motion shows only the poster. */}
           <div className="relative">
-            <MediaImage
-              src="/media/anas-1.jpg"
+            <HeroVideo
+              poster="/media/hero-poster.jpg"
+              webm="/media/hero.webm"
+              mp4="/media/hero.mp4"
               alt="Anas Ali, founder of Wealth University"
-              ratio="portrait"
-              priority
-              sizes="(max-width: 768px) 100vw, 40vw"
             />
             <span
               className="pointer-events-none absolute -bottom-3 -left-3 -z-10 h-24 w-24 rounded-sm bg-phosphor/20 blur-2xl"
