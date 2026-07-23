@@ -9,6 +9,7 @@ import "./globals.css";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { SmoothScroll } from "@/components/motion/smooth-scroll";
+import { GhostCursorLayer } from "@/components/motion/ghost-cursor-layer";
 
 /* Display — restrained high-contrast institutional serif.
    Load the opsz/SOFT/WONK axes so globals.css can pin the
@@ -77,6 +78,7 @@ export default function RootLayout({
           </main>
           <SiteFooter />
         </SmoothScroll>
+        <GhostCursorLayer />
       </body>
     </html>
   );
