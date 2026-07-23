@@ -6,7 +6,7 @@ import { MediaImage } from "@/components/media-image";
 import { HeroVideo } from "@/components/hero-video";
 import { RiskDisclosure } from "@/components/risk-disclosure";
 import { Reveal } from "@/components/motion/reveal";
-import { SplitHeadline } from "@/components/motion/split-headline";
+import { TextPressure } from "@/components/motion/text-pressure";
 
 const LIFESTYLE = ["anas-2", "anas-3", "anas-4", "anas-5"] as const;
 const TESTIMONIALS = [1, 2, 3, 4, 5, 6] as const;
@@ -39,10 +39,17 @@ export default function Home() {
                 {SITE.role} · Wealth University
               </p>
 
-              <SplitHeadline
-                text="Join my exclusive trading community."
-                className="font-display mt-4 text-4xl leading-[1.03] tracking-tight text-foreground sm:text-6xl"
-              />
+              {/* Interactive TextPressure headline (Roboto Flex). Static,
+                  clean headline on mobile/reduced-motion. min-height reserves
+                  space so the post-mount resize doesn't shift the layout. */}
+              <div className="mt-5 flex w-full max-w-xl items-center min-h-[3.25rem] sm:min-h-[4.5rem]">
+                <TextPressure
+                  text="Join the community"
+                  align="left"
+                  textColor="#E8E6E0"
+                  minFontSize={30}
+                />
+              </div>
 
               <Reveal mode="load" delay={0.35}>
                 <p className="mt-6 max-w-xl text-lg leading-relaxed text-mist">
