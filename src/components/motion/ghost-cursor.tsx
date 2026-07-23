@@ -139,13 +139,13 @@ const unpremultiplyFragment = `
 `;
 
 export function GhostCursor({
-  color = "#E9A23B",
-  brightness = 1.6,
+  color = "#AEB4BD", // greyish smoke, not amber
+  brightness = 1.0,
   edgeIntensity = 0,
-  trailLength = 40,
+  trailLength = 26,
   inertia = 0.5,
   grainIntensity = 0.04,
-  bloomStrength = 0.12,
+  bloomStrength = 0.08,
   bloomRadius = 1.0,
   bloomThreshold = 0.02,
   maxDevicePixelRatio = 0.5,

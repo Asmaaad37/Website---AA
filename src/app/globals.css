@@ -101,6 +101,8 @@
   width: 100%;
   height: 100%;
   background: transparent;
+  /* translucent so page content stays readable through the smoke */
+  opacity: 0.45;
 }
 
 /* Accessibility: kill motion entirely when requested (incl. Lenis
