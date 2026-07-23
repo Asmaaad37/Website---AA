@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { SITE, STATS, PRESS, COMMUNITY_VALUE } from "@/lib/site";
 import { TelegramButton } from "@/components/telegram-button";
 import { MediaImage } from "@/components/media-image";
@@ -14,77 +15,80 @@ export default function Home() {
   return (
     <>
       {/* ============================ HERO ============================ */}
-      <section className="relative overflow-hidden">
-        <div className="mx-auto grid w-full max-w-6xl gap-10 px-5 py-16 sm:px-8 md:grid-cols-[1.15fr_0.85fr] md:items-center md:py-24">
-          <div>
-            <p className="tabular text-xs uppercase tracking-widest text-phosphor">
-              {SITE.role} · Wealth University
-            </p>
-
-            <SplitHeadline
-              text="Join my exclusive trading community."
-              className="font-display mt-4 text-4xl leading-[1.03] tracking-tight text-foreground sm:text-6xl"
+      <section className="relative">
+        {/* Full-bleed hero background — the portrait carries the section */}
+        <div className="relative overflow-hidden">
+          <div className="absolute inset-0 -z-10">
+            <Image
+              src="/media/anas-1.jpg"
+              alt="Anas Ali, founder of Wealth University"
+              fill
+              priority
+              quality={62}
+              sizes="100vw"
+              className="object-cover object-center"
             />
-
-            <Reveal mode="load" delay={0.35}>
-              <p className="mt-6 max-w-xl text-lg leading-relaxed text-mist">
-                Free daily market breakdowns, 24/7 community support, and direct
-                mentorship from me — Anas Ali. Learn the strategies. Build the
-                mindset. Start today, completely free.
-              </p>
-
-              <div className="mt-9 flex flex-wrap items-center gap-4">
-                <TelegramButton size="lg">
-                  Join {SITE.telegramHandle}
-                </TelegramButton>
-                <Link
-                  href="/#community"
-                  className="group inline-flex items-center gap-2 text-foreground"
-                >
-                  What you get
-                  <span
-                    aria-hidden
-                    className="transition-transform group-hover:translate-x-1"
-                  >
-                    &darr;
-                  </span>
-                </Link>
-              </div>
-
-              {/* Self-reported community figures (his own published numbers) */}
-              <dl className="mt-12 grid max-w-lg grid-cols-3 gap-6">
-                {STATS.map((s) => (
-                  <div key={s.label} className="tick-rule border-l pl-4">
-                    <dt className="font-display text-2xl text-foreground sm:text-3xl">
-                      {s.value}
-                    </dt>
-                    <dd className="mt-1 text-xs leading-snug text-mist">
-                      {s.label}
-                    </dd>
-                  </div>
-                ))}
-              </dl>
-            </Reveal>
+            {/* Scrims keep the overlaid text readable (WCAG contrast) */}
+            <div className="absolute inset-0 bg-gradient-to-r from-depth via-depth/90 to-depth/30" />
+            <div className="absolute inset-0 bg-gradient-to-t from-depth via-transparent to-depth/50" />
           </div>
 
-          {/* Hero visual: poster is the LCP, encoded loop fades in over it.
-              Reduced-motion shows only the poster. */}
-          <div className="relative">
-            <HeroVideo
-              poster="/media/hero-poster.jpg"
-              webm="/media/hero.webm"
-              mp4="/media/hero.mp4"
-              alt="Anas Ali, founder of Wealth University"
-            />
-            <span
-              className="pointer-events-none absolute -bottom-3 -left-3 -z-10 h-24 w-24 rounded-sm bg-phosphor/20 blur-2xl"
-              aria-hidden
-            />
+          <div className="mx-auto flex min-h-[86vh] w-full max-w-6xl flex-col justify-center px-5 py-24 sm:px-8">
+            <div className="max-w-2xl">
+              <p className="tabular text-xs uppercase tracking-widest text-phosphor">
+                {SITE.role} · Wealth University
+              </p>
+
+              <SplitHeadline
+                text="Join my exclusive trading community."
+                className="font-display mt-4 text-4xl leading-[1.03] tracking-tight text-foreground sm:text-6xl"
+              />
+
+              <Reveal mode="load" delay={0.35}>
+                <p className="mt-6 max-w-xl text-lg leading-relaxed text-mist">
+                  Free daily market breakdowns, 24/7 community support, and
+                  direct mentorship from me — Anas Ali. Learn the strategies.
+                  Build the mindset. Start today, completely free.
+                </p>
+
+                <div className="mt-9 flex flex-wrap items-center gap-4">
+                  <TelegramButton size="lg">
+                    Join {SITE.telegramHandle}
+                  </TelegramButton>
+                  <Link
+                    href="/#community"
+                    className="group inline-flex items-center gap-2 text-foreground"
+                  >
+                    What you get
+                    <span
+                      aria-hidden
+                      className="transition-transform group-hover:translate-x-1"
+                    >
+                      &darr;
+                    </span>
+                  </Link>
+                </div>
+
+                {/* Self-reported community figures (his own published numbers) */}
+                <dl className="mt-12 grid max-w-lg grid-cols-3 gap-6">
+                  {STATS.map((s) => (
+                    <div key={s.label} className="tick-rule border-l pl-4">
+                      <dt className="font-display text-2xl text-foreground sm:text-3xl">
+                        {s.value}
+                      </dt>
+                      <dd className="mt-1 text-xs leading-snug text-mist">
+                        {s.label}
+                      </dd>
+                    </div>
+                  ))}
+                </dl>
+              </Reveal>
+            </div>
           </div>
         </div>
 
         {/* Official channel verification bar */}
-        <div className="tick-rule border-y bg-surface/30">
+        <div className="tick-rule border-y bg-graphite">
           <p className="mx-auto w-full max-w-6xl px-5 py-3 text-center text-xs text-mist sm:px-8">
             Official community only:{" "}
             <a
@@ -138,6 +142,40 @@ export default function Home() {
           {/* Compliance: education framing made explicit here. */}
           <div className="mt-6 max-w-2xl">
             <RiskDisclosure variant="inline" />
+          </div>
+        </div>
+      </section>
+
+      {/* ===================== VIDEO / SEE INSIDE ===================== */}
+      <section id="watch" className="tick-rule border-t bg-depth">
+        <div className="mx-auto w-full max-w-6xl px-5 py-20 sm:px-8">
+          <div className="grid items-center gap-10 md:grid-cols-[1fr_0.62fr]">
+            <Reveal>
+              <p className="tabular text-xs uppercase tracking-widest text-phosphor">
+                Watch
+              </p>
+              <h2 className="font-display mt-3 max-w-xl text-3xl leading-tight tracking-tight sm:text-4xl">
+                See what it&rsquo;s about
+              </h2>
+              <p className="mt-4 max-w-md leading-relaxed text-mist">
+                A quick look inside the community — what you&rsquo;ll learn, how
+                it works, and why 160,000+ members choose to be here.
+              </p>
+              <div className="mt-6">
+                <TelegramButton>Join {SITE.telegramHandle}</TelegramButton>
+              </div>
+            </Reveal>
+
+            <div className="mx-auto w-full max-w-[300px]">
+              <HeroVideo
+                poster="/media/hero-poster.jpg"
+                webm="/media/hero.webm"
+                mp4="/media/hero.mp4"
+                alt="A look inside Anas Ali's trading community"
+                ratio="vertical"
+                sizes="(max-width: 768px) 100vw, 300px"
+              />
+            </div>
           </div>
         </div>
       </section>

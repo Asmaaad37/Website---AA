@@ -32,24 +32,34 @@ export function HeroVideo({
   webm,
   mp4,
   alt,
+  ratio = "portrait",
+  priority = false,
+  sizes = "(max-width: 768px) 100vw, 40vw",
 }: {
   poster: string;
   webm: string;
   mp4: string;
   alt: string;
+  ratio?: "portrait" | "vertical";
+  priority?: boolean;
+  sizes?: string;
 }) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const reduced = usePrefersReducedMotion();
   const [ready, setReady] = useState(false);
 
+  const aspect = ratio === "vertical" ? "aspect-[9/16]" : "aspect-[3/4]";
+
   return (
-    <div className="tick-rule relative aspect-[3/4] overflow-hidden border bg-surface/40">
+    <div
+      className={`tick-rule relative overflow-hidden border bg-surface/40 ${aspect}`}
+    >
       <Image
         src={poster}
         alt={alt}
         fill
-        priority
-        sizes="(max-width: 768px) 100vw, 40vw"
+        priority={priority}
+        sizes={sizes}
         className="object-cover"
       />
 
