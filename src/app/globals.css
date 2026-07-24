@@ -6,17 +6,17 @@
    utilities (bg-depth, text-phosphor, font-display, ...).
    ============================================================= */
 @theme {
-  /* Palette ---------------------------------------------------- */
-  --color-depth: #0e141c; /* base dark — terminal at rest */
-  --color-graphite: #242c38; /* elevated surfaces / cards */
-  --color-ledger: #e8e6e0; /* paper light base */
-  --color-phosphor: #e9a23b; /* rationed amber signal */
+  /* Palette — "Navy & Gold" ----------------------------------- */
+  --color-depth: #021024; /* deep navy base */
+  --color-graphite: #052659; /* deep blue elevated surfaces / cards */
+  --color-ledger: #c1e8ff; /* ice blue — foreground text / light */
+  --color-phosphor: #e9a23b; /* rationed amber signal (accent) */
   --color-drawdown: #a8443b; /* muted oxblood — RISK/LOSS fills/borders */
-  --color-mist: #8a94a3; /* secondary text / tick-rules */
+  --color-mist: #7da0ca; /* muted blue — secondary text / tick-rules */
 
-  /* Lightened oxblood for small RISK TEXT on the dark base — keeps the
-     hue but clears WCAG AA (drawdown itself is too dark as text). */
-  --color-risk-ink: color-mix(in srgb, var(--color-drawdown) 50%, var(--color-ledger));
+  /* Lightened oxblood for small RISK TEXT on navy — warm so it still
+     reads as risk (mixing with the icy ledger would go muddy). */
+  --color-risk-ink: color-mix(in srgb, var(--color-drawdown) 55%, white);
 
   /* Semantic aliases ------------------------------------------ */
   --color-background: var(--color-depth);
