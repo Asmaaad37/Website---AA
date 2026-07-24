@@ -6,7 +6,7 @@ import { MediaImage } from "@/components/media-image";
 import { DualVideo } from "@/components/dual-video";
 import { RiskDisclosure } from "@/components/risk-disclosure";
 import { Reveal } from "@/components/motion/reveal";
-import { TextPressure } from "@/components/motion/text-pressure";
+import { RotatingHeadline } from "@/components/motion/rotating-headline";
 import { VisionMorph } from "@/components/motion/vision-morph";
 
 const TESTIMONIALS = [1, 2, 3, 4, 5, 6] as const;
@@ -39,17 +39,9 @@ export default function Home() {
                 {SITE.role} · Wealth University
               </p>
 
-              {/* Interactive TextPressure headline (Roboto Flex). Static,
-                  clean headline on mobile/reduced-motion. min-height reserves
-                  space so the post-mount resize doesn't shift the layout. */}
-              <div className="mt-5 flex w-full max-w-xl items-center min-h-[3.25rem] sm:min-h-[4.5rem]">
-                <TextPressure
-                  text="Join the community"
-                  align="left"
-                  textColor="#E8E6E0"
-                  minFontSize={30}
-                />
-              </div>
+              {/* Rotating-word headline (GSAP-driven; static first word under
+                  reduced motion). */}
+              <RotatingHeadline className="font-display mt-4 text-4xl leading-[1.05] tracking-tight text-foreground sm:text-6xl" />
 
               <Reveal mode="load" delay={0.35}>
                 <p className="mt-6 max-w-xl text-lg leading-relaxed text-mist">

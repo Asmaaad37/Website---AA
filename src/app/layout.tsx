@@ -1,10 +1,5 @@
 import type { Metadata } from "next";
-import {
-  Fraunces,
-  Hanken_Grotesk,
-  IBM_Plex_Mono,
-  Roboto_Flex,
-} from "next/font/google";
+import { Fraunces, Hanken_Grotesk, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
@@ -36,15 +31,6 @@ const plexMono = IBM_Plex_Mono({
   display: "swap",
 });
 
-/* Interactive display — the TextPressure effect needs the width axis.
-   Self-hosted (no external @import), CSP-safe. */
-const robotoFlex = Roboto_Flex({
-  variable: "--font-roboto-flex",
-  subsets: ["latin"],
-  axes: ["wdth"],
-  display: "swap",
-});
-
 export const metadata: Metadata = {
   metadataBase: new URL("https://anasali.school"),
   title: {
@@ -62,7 +48,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${fraunces.variable} ${hanken.variable} ${plexMono.variable} ${robotoFlex.variable} h-full antialiased`}
+      className={`${fraunces.variable} ${hanken.variable} ${plexMono.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col bg-background text-foreground">
         <a
