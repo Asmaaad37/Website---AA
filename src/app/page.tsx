@@ -11,6 +11,20 @@ import { VisionMorph } from "@/components/motion/vision-morph";
 
 const TESTIMONIALS = [1, 2, 3, 4, 5, 6] as const;
 
+// Icons for the "What you get" cards, in COMMUNITY_VALUE order.
+const COMMUNITY_ICONS = [
+  <path key="chart" d="M3 3v18h18M7 14l3-4 3 3 4-6" />, // market breakdowns
+  <path
+    key="shield"
+    d="M12 3l7 3v5c0 4.2-3 7-7 8-4-1-7-3.8-7-8V6l7-3zM9 12l2 2 4-4"
+  />, // moderators
+  <path key="person" d="M12 4.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7zM5 20a7 7 0 0 1 14 0" />, // mentorship
+  <path
+    key="cap"
+    d="M22 10 12 5 2 10l10 5 10-5zM6 12v4c0 1.3 2.7 2.5 6 2.5s6-1.2 6-2.5v-4"
+  />, // fundamentals
+];
+
 export default function Home() {
   return (
     <>
@@ -126,10 +140,26 @@ export default function Home() {
             {COMMUNITY_VALUE.map((item, i) => (
               <div
                 key={item.title}
-                className="tick-rule border bg-surface/30 p-7"
+                className="tick-rule group border bg-surface/30 p-7 transition-colors hover:bg-surface/50"
               >
-                <span className="tabular text-xs text-mist">0{i + 1}</span>
-                <h3 className="font-display mt-3 text-xl text-foreground">
+                <div className="flex items-center justify-between">
+                  <span className="flex h-11 w-11 items-center justify-center rounded-lg border border-phosphor/30 bg-phosphor/10 text-phosphor transition-colors group-hover:bg-phosphor/20">
+                    <svg
+                      viewBox="0 0 24 24"
+                      className="h-5 w-5"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth={1.6}
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      aria-hidden
+                    >
+                      {COMMUNITY_ICONS[i]}
+                    </svg>
+                  </span>
+                  <span className="tabular text-xs text-mist">0{i + 1}</span>
+                </div>
+                <h3 className="font-display mt-4 text-xl text-foreground">
                   {item.title}
                 </h3>
                 <p className="mt-2 text-sm leading-relaxed text-mist">
