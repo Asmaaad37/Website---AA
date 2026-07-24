@@ -3,12 +3,12 @@ import Image from "next/image";
 import { SITE, STATS, PRESS, COMMUNITY_VALUE } from "@/lib/site";
 import { TelegramButton } from "@/components/telegram-button";
 import { MediaImage } from "@/components/media-image";
-import { HeroVideo } from "@/components/hero-video";
+import { DualVideo } from "@/components/dual-video";
 import { RiskDisclosure } from "@/components/risk-disclosure";
 import { Reveal } from "@/components/motion/reveal";
 import { TextPressure } from "@/components/motion/text-pressure";
+import { VisionMorph } from "@/components/motion/vision-morph";
 
-const LIFESTYLE = ["anas-2", "anas-3", "anas-4", "anas-5"] as const;
 const TESTIMONIALS = [1, 2, 3, 4, 5, 6] as const;
 
 export default function Home() {
@@ -20,7 +20,7 @@ export default function Home() {
         <div className="relative overflow-hidden">
           <div className="absolute inset-0 -z-10">
             <Image
-              src="/media/anas-1.jpg"
+              src="/media/anas-6.jpg"
               alt="Anas Ali, founder of Wealth University"
               fill
               priority
@@ -156,68 +156,50 @@ export default function Home() {
       {/* ===================== VIDEO / SEE INSIDE ===================== */}
       <section id="watch" className="tick-rule border-t bg-depth">
         <div className="mx-auto w-full max-w-6xl px-5 py-20 sm:px-8">
-          <div className="grid items-center gap-10 md:grid-cols-[1fr_0.62fr]">
-            <Reveal>
-              <p className="tabular text-xs uppercase tracking-widest text-phosphor">
-                Watch
-              </p>
-              <h2 className="font-display mt-3 max-w-xl text-3xl leading-tight tracking-tight sm:text-4xl">
-                See what it&rsquo;s about
-              </h2>
-              <p className="mt-4 max-w-md leading-relaxed text-mist">
-                A quick look inside the community — what you&rsquo;ll learn, how
-                it works, and why 160,000+ members choose to be here.
-              </p>
-              <div className="mt-6">
-                <TelegramButton>Join {SITE.telegramHandle}</TelegramButton>
-              </div>
-            </Reveal>
+          <Reveal className="mx-auto max-w-xl text-center">
+            <p className="tabular text-xs uppercase tracking-widest text-phosphor">
+              Watch
+            </p>
+            <h2 className="font-display mt-3 text-3xl leading-tight tracking-tight sm:text-4xl">
+              See what it&rsquo;s about
+            </h2>
+            <p className="mt-4 leading-relaxed text-mist">
+              A quick look inside the community — what you&rsquo;ll learn, how it
+              works, and why 160,000+ members choose to be here. Tap the sound
+              icon to listen.
+            </p>
+          </Reveal>
 
-            <div className="mx-auto w-full max-w-[300px]">
-              <HeroVideo
-                poster="/media/hero-poster.jpg"
-                webm="/media/hero.webm"
-                mp4="/media/hero.mp4"
-                alt="A look inside Anas Ali's trading community"
-                ratio="vertical"
-                sizes="(max-width: 768px) 100vw, 300px"
-              />
-            </div>
+          <div className="mt-12">
+            <DualVideo
+              videos={[
+                {
+                  poster: "/media/video-1-poster.jpg",
+                  webm: "/media/video-1.webm",
+                  mp4: "/media/video-1.mp4",
+                  label: "the first clip",
+                },
+                {
+                  poster: "/media/video-2-poster.jpg",
+                  webm: "/media/video-2.webm",
+                  mp4: "/media/video-2.mp4",
+                  label: "the second clip",
+                },
+              ]}
+            />
+          </div>
+
+          <div className="mt-12 flex justify-center">
+            <TelegramButton>Join {SITE.telegramHandle}</TelegramButton>
           </div>
         </div>
       </section>
 
       {/* ========================= LIFESTYLE ========================= */}
       <section id="lifestyle" className="tick-rule border-t bg-depth">
-        <div className="mx-auto w-full max-w-6xl px-5 py-20 sm:px-8">
-          <Reveal>
-            <p className="tabular text-xs uppercase tracking-widest text-phosphor">
-              The vision
-            </p>
-            <h2 className="font-display mt-3 max-w-2xl text-3xl leading-tight tracking-tight sm:text-4xl">
-              I am waiting for you at the top.
-            </h2>
-            <p className="mt-4 max-w-2xl text-mist">
-              A look behind the work, the community, and the life it can build.
-              Join in and learn the strategies for yourself.
-            </p>
-          </Reveal>
-
-          <Reveal className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-4">
-            {LIFESTYLE.map((name, i) => (
-              <MediaImage
-                key={name}
-                src={`/media/${name}.jpg`}
-                alt={`Anas Ali — ${i + 1}`}
-                ratio={i % 2 === 0 ? "portrait" : "square"}
-                sizes="(max-width: 640px) 50vw, 25vw"
-              />
-            ))}
-          </Reveal>
-
-          <div className="mt-10">
-            <TelegramButton>Start your journey</TelegramButton>
-          </div>
+        <VisionMorph />
+        <div className="mx-auto flex w-full max-w-6xl justify-center px-5 pb-20 sm:px-8">
+          <TelegramButton>Start your journey</TelegramButton>
         </div>
       </section>
 
