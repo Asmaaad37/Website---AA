@@ -17,7 +17,7 @@ export function PlaceholderPage({
   phase?: string;
 }) {
   return (
-    <div className="mx-auto w-full max-w-6xl px-5 py-20 sm:px-8 md:py-28">
+    <div className="mx-auto w-full max-w-6xl px-5 pb-20 pt-28 sm:px-8 md:pb-28 md:pt-36">
       <div className="tick-rule inline-flex items-center gap-2 border px-3 py-1.5">
         <span className="h-1.5 w-1.5 rounded-full bg-phosphor" aria-hidden />
         <span className="tabular text-xs uppercase tracking-widest text-mist">

@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <div className="mx-auto w-full max-w-6xl px-5 py-16 sm:px-8 md:py-24">
+    <div className="mx-auto w-full max-w-6xl px-5 pb-16 pt-28 sm:px-8 md:pb-24 md:pt-36">
       <div className="grid gap-10 md:grid-cols-[0.85fr_1.15fr] md:items-center">
         <MediaImage
           src="/media/anas-2.jpg"
