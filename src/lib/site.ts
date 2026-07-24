@@ -37,35 +37,44 @@ export const STATS: { value: string; label: string }[] = [
  * page was reachable). Name-only entries are outlets listed on his site
  * without an article link supplied yet.
  */
-export type PressItem = { name: string; url?: string; headline?: string };
+export type PressItem = {
+  name: string;
+  url?: string;
+  headline?: string;
+  image?: string; // article preview image (og:image), self-hosted
+};
 
 export const PRESS: PressItem[] = [
   {
     name: "Khaleej Times",
     url: "https://www.khaleejtimes.com/business/a-young-entrepreneur-redefining-access-to-education",
     headline: "A young entrepreneur redefining access to education",
+    image: "/media/press-khaleej.jpg",
   },
   {
     name: "Daily Pakistan",
     url: "https://en.dailypakistan.com.pk/07-Jan-2026/24-year-old-entrepreneur-muhammad-anas-ali-builds-free-online-university-challenges-traditional-education-models",
     headline:
       "24-year-old entrepreneur builds a free online university, challenging traditional education",
+    image: "/media/press-dailypak.jpg",
   },
   {
     name: "GNN",
     url: "https://gnnhd.tv/news/53321/preparing-youth-for-digital-economy-inside-pakistan-s-wealth-university",
     headline:
       "Preparing youth for the digital economy: inside Pakistan's Wealth University",
-  },
-  {
-    name: "SAMAA TV",
-    url: "https://www.samaa.tv/2087344589-skills-over-certificates",
-    headline: "Skills over certificates",
+    image: "/media/press-gnn.jpg",
   },
   {
     name: "OK! Magazine",
     url: "https://okmagazine.com/p/muhammad-anas-alis-journey-building-asias-largest-free-university/",
     headline: "Muhammad Anas Ali's journey building Asia's largest free university",
+    image: "/media/press-ok.jpg",
+  },
+  {
+    name: "SAMAA TV",
+    url: "https://www.samaa.tv/2087344589-skills-over-certificates",
+    headline: "Skills over certificates",
   },
   { name: "Pakistan Observer" },
   { name: "LA Weekly" },

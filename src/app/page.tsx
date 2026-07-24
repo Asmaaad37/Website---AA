@@ -212,28 +212,52 @@ export default function Home() {
             </p>
           </Reveal>
 
-          {/* Attributable coverage — links to the real articles */}
-          <Reveal className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          {/* Attributable coverage — article preview image + headline,
+              links to the real article. */}
+          <Reveal className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {PRESS.filter((p) => p.url).map((p) => (
               <a
                 key={p.name}
                 href={p.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="tick-rule group flex h-full flex-col justify-between gap-4 border bg-surface/30 p-6 transition-colors hover:border-phosphor/50"
+                className="tick-rule group flex flex-col overflow-hidden rounded-lg border bg-surface/30 transition-colors hover:border-phosphor/50"
               >
-                <p className="text-sm leading-snug text-foreground">
-                  &ldquo;{p.headline}&rdquo;
-                </p>
-                <span className="tabular flex items-center gap-2 text-xs uppercase tracking-widest text-mist">
-                  {p.name}
-                  <span
-                    aria-hidden
-                    className="text-phosphor transition-transform group-hover:translate-x-0.5"
-                  >
-                    &nearr;
+                {p.image ? (
+                  <div className="relative aspect-[16/9] overflow-hidden">
+                    <Image
+                      src={p.image}
+                      alt={`${p.name}: ${p.headline}`}
+                      fill
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-depth/70 via-transparent to-transparent" />
+                  </div>
+                ) : (
+                  <div className="flex aspect-[16/9] items-center justify-center bg-gradient-to-br from-graphite to-depth px-6 text-center">
+                    <span className="font-display text-2xl text-foreground">
+                      {p.name}
+                    </span>
+                  </div>
+                )}
+
+                <div className="flex flex-1 flex-col gap-3 p-5">
+                  {/* highlighted headline */}
+                  <p className="font-display text-base leading-snug text-foreground">
+                    {p.headline}
+                  </p>
+                  <span className="tabular mt-auto flex items-center gap-2 text-xs uppercase tracking-widest text-mist">
+                    <span className="h-px w-4 bg-phosphor" aria-hidden />
+                    {p.name}
+                    <span
+                      aria-hidden
+                      className="ml-auto text-phosphor transition-transform group-hover:translate-x-0.5"
+                    >
+                      &nearr;
+                    </span>
                   </span>
-                </span>
+                </div>
               </a>
             ))}
           </Reveal>
