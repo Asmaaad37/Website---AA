@@ -80,6 +80,36 @@
   border-color: var(--color-rule);
 }
 
+/* Flow button — outlined amber pill at rest; on hover an amber fill flows
+   up from the bottom and the text inverts to navy. Reduced-motion snaps
+   (via the global transition backstop) but still inverts. */
+.flow-btn {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border-radius: 9999px;
+  border: 1px solid var(--color-phosphor);
+  color: var(--color-phosphor);
+  transition: color 0.35s ease;
+}
+.flow-btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--color-phosphor);
+  transform: translateY(101%);
+  transition: transform 0.42s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.flow-btn:hover,
+.flow-btn:focus-visible {
+  color: var(--color-depth);
+}
+.flow-btn:hover::before,
+.flow-btn:focus-visible::before {
+  transform: translateY(0);
+}
+
 /* Glass-lens cursor — a frosted orb that follows the pointer and samples
    the real page via backdrop-filter. Position/fade via CSS vars + a
    transform transition (no JS animation loop). Never blocks clicks. */

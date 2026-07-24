@@ -21,10 +21,15 @@ export function TelegramButton({
       href={SITE.telegram}
       target="_blank"
       rel="noopener noreferrer"
-      className={`inline-flex items-center justify-center gap-2 rounded-sm bg-phosphor font-medium text-depth transition-opacity hover:opacity-90 ${sizes[size]} ${className}`}
+      className={`flow-btn group inline-flex items-center justify-center gap-2 font-medium ${sizes[size]} ${className}`}
     >
       {children}
-      <span aria-hidden>&rarr;</span>
+      <span
+        aria-hidden
+        className="transition-transform duration-300 group-hover:translate-x-0.5"
+      >
+        &rarr;
+      </span>
     </a>
   );
 }
