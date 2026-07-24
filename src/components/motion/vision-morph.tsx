@@ -36,12 +36,13 @@ function usePrefersReducedMotion() {
 
 // --- position maths (offsets from stage centre; +y = down) ---
 function circlePos(i: number, n: number, w: number, h: number) {
-  const R = Math.min(Math.min(w, h) * 0.32, 280);
-  const ang = (i / n) * Math.PI * 2 - Math.PI / 2;
+  const R = Math.min(Math.min(w, h) * 0.36, 300);
+  // Offset by half a step so no card sits dead-level with the centre text.
+  const ang = (i / n) * Math.PI * 2 - Math.PI / 2 + Math.PI / n;
   return {
     x: Math.cos(ang) * R,
     y: Math.sin(ang) * R,
-    rotation: (ang * 180) / Math.PI + 90,
+    rotation: 0, // upright — no tangential tilt
     scale: 1,
   };
 }
@@ -57,7 +58,7 @@ function arcPos(i: number, n: number, w: number, h: number) {
   return {
     x: Math.cos(rad) * bigR,
     y: Math.sin(rad) * bigR + (bigR - apex),
-    rotation: a + 90,
+    rotation: (a + 90) * 0.5, // gentler fan, not a hard tangential tilt
     scale: mobile ? 1.15 : 1.4,
   };
 }
@@ -155,7 +156,7 @@ export function VisionMorph() {
 
   return (
     <div ref={stageRef} className="relative h-[100svh] w-full overflow-hidden">
-      <div className="vision-center pointer-events-none absolute left-1/2 top-1/2 z-10 w-full max-w-md -translate-x-1/2 -translate-y-1/2 px-5 text-center">
+      <div className="vision-center pointer-events-none absolute left-1/2 top-1/2 z-10 w-full max-w-sm -translate-x-1/2 -translate-y-1/2 px-5 text-center">
         <p className="tabular text-xs uppercase tracking-widest text-phosphor">
           The vision
         </p>
@@ -170,7 +171,7 @@ export function VisionMorph() {
           ref={(el) => {
             cardsRef.current[i] = el;
           }}
-          className="absolute left-1/2 top-1/2 h-[110px] w-[78px] sm:h-[150px] sm:w-[106px]"
+          className="absolute left-1/2 top-1/2 h-[122px] w-[86px] sm:h-[164px] sm:w-[116px]"
         >
           <div className="tick-rule relative h-full w-full overflow-hidden rounded-md border shadow-lg">
             <Image
