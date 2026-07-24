@@ -28,9 +28,10 @@ export default function Home() {
               sizes="100vw"
               className="object-cover object-center"
             />
-            {/* Scrims keep the overlaid text readable (WCAG contrast) */}
-            <div className="absolute inset-0 bg-gradient-to-r from-depth via-depth/90 to-depth/30" />
-            <div className="absolute inset-0 bg-gradient-to-t from-depth via-transparent to-depth/50" />
+            {/* Scrims: keep the left dark enough for text, but let the photo
+                show through much more in the centre/right. */}
+            <div className="absolute inset-0 bg-gradient-to-r from-depth from-5% via-depth/62 via-55% to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-depth via-transparent to-depth/40" />
           </div>
 
           <div className="mx-auto flex min-h-[86vh] w-full max-w-6xl flex-col justify-center px-5 py-24 sm:px-8">
