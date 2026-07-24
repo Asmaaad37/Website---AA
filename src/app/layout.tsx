@@ -1,25 +1,17 @@
 import type { Metadata } from "next";
-import { Fraunces, Hanken_Grotesk, IBM_Plex_Mono } from "next/font/google";
+import { IBM_Plex_Mono } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { SmoothScroll } from "@/components/motion/smooth-scroll";
 import { GlassCursor } from "@/components/glass-cursor";
 
-/* Display — restrained high-contrast institutional serif.
-   Load the opsz/SOFT/WONK axes so globals.css can pin the
-   engraved look via font-variation-settings. */
-const fraunces = Fraunces({
-  variable: "--font-fraunces",
-  subsets: ["latin"],
-  display: "swap",
-  axes: ["opsz", "SOFT", "WONK"],
-});
-
-/* Body — humanist grotesque (deliberately not Inter). */
-const hanken = Hanken_Grotesk({
-  variable: "--font-hanken",
-  subsets: ["latin"],
+/* Display + body — Clash Grotesk (self-hosted variable, 200–700). */
+const clash = localFont({
+  src: "../fonts/ClashGrotesk-Variable.woff2",
+  variable: "--font-clash",
+  weight: "200 700",
   display: "swap",
 });
 
@@ -48,7 +40,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${fraunces.variable} ${hanken.variable} ${plexMono.variable} h-full antialiased`}
+      className={`${clash.variable} ${plexMono.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col bg-background text-foreground">
         <a

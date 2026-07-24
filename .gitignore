@@ -43,3 +43,6 @@ next-env.d.ts
 # raw source assets (working copies live in public/media; originals kept
 # local to re-encode in Phase 4 — avoids duplicating a 7.9MB video in git)
 /content
+
+# raw font drop (working copy self-hosted in src/fonts)
+/fonts

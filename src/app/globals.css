@@ -24,11 +24,11 @@
   --color-surface: var(--color-graphite);
   --color-rule: color-mix(in srgb, var(--color-mist) 22%, transparent);
 
-  /* Type — three roles ---------------------------------------- */
-  --font-display: var(--font-fraunces); /* restrained high-contrast serif */
-  --font-body: var(--font-hanken); /* humanist grotesque */
+  /* Type — Clash Grotesk for display + body, Plex Mono for data ---- */
+  --font-display: var(--font-clash); /* Clash Grotesk (heavier weights) */
+  --font-body: var(--font-clash); /* Clash Grotesk (regular) */
   --font-mono: var(--font-plex-mono); /* tabular data / terminal */
-  --font-sans: var(--font-hanken); /* default sans -> body */
+  --font-sans: var(--font-clash); /* default sans -> Clash */
 }
 
 /* Committed dark identity — NOT prefers-color-scheme driven.
@@ -69,13 +69,10 @@
   }
 }
 
-/* Display face: high optical contrast, softness/wonk off, so
-   Fraunces reads engraved/institutional — not editorial Playfair.
-   Unlayered so it wins over the utility's font-family without
-   conflicting (different property). */
+/* Display face: Clash Grotesk with a touch of negative tracking for
+   tighter, more confident headlines. */
 .font-display {
-  font-variation-settings: "opsz" 144, "SOFT" 0, "WONK" 0;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
 }
 
 /* Order-book / ruler tick-rule — the recurring structural motif. */
