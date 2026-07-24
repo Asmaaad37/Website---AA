@@ -6,6 +6,7 @@ import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { SmoothScroll } from "@/components/motion/smooth-scroll";
 import { GlassCursor } from "@/components/glass-cursor";
+import { SocialFab } from "@/components/social-fab";
 
 /* Display + body — Clash Grotesk (self-hosted variable, 200–700). */
 const clash = localFont({
@@ -57,6 +58,7 @@ export default function RootLayout({
           <SiteFooter />
         </SmoothScroll>
         <GlassCursor />
+        <SocialFab />
       </body>
     </html>
   );
